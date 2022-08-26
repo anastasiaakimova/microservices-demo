@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE' //для подключения последних актуальных версий библиотек
+    id 'java' // отечает за компиляцию java-кода и всего остального базового
+}
+
+group = 'by.akimova.micro.demo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+// extention - устанавливает переменную Spring Cloud Version значение
+ext {
+    set('springCloudVersion', "2021.0.3")
+}
+
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+}
+// для Spring cloud
+dependencyManagement {
+    imports {
+        //версия переменной в ext
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
